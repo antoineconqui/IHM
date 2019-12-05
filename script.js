@@ -8,7 +8,7 @@ var calculs = 0;
 var calculsTotal = 0;
 var observationLaunched = false;
 var alarmeOn = false;
-var sizes = [20,18,16,14,12,10,8,6];
+var sizes = [20,12,16,8,14,6,10,18];
 var alarmeT0;
 var alarmeTimes = [];
 var mental;
@@ -73,7 +73,7 @@ function EndObservation(){
         type : 'POST',
         data : 'prenom=' + prenom + '&nom=' + nom + '&avions=' + avions + '&avionsTotal=' + avionsTotal + '&calculs=' + calculs + '&calculsTotal=' + calculsTotal + '&time1=' + alarmeTimes[0] + '&time2=' + alarmeTimes[1] + '&time3=' + alarmeTimes[2] + '&time4=' + alarmeTimes[3] + '&time5=' + alarmeTimes[4] + '&time6=' + alarmeTimes[5] + '&time7=' + alarmeTimes[6] + '&time8=' + alarmeTimes[7],
         success : function(){
-            window.location = './results.php';
+            window.location = './results.html';
         }
     });
 }

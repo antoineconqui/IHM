@@ -1,6 +1,6 @@
 <?php
-  $prenom = 'Antoine';//htmlspecialchars($_POST['prenom']);
-  $nom  = 'Conqui';//htmlspecialchars($_POST['nom']);
+  $prenom = htmlspecialchars($_POST['prenom']);
+  $nom  = htmlspecialchars($_POST['nom']);
 ?><script>
     var prenom = '<?php print $prenom; ?>';
     var nom = '<?php print $nom; ?>';

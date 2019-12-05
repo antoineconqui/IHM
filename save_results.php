@@ -1,5 +1,4 @@
 <?php
-
     $db = new mysqli('localhost','antoineconqui','admin','ihm');
     $db->set_charset('utf8');
 
