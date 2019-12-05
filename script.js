@@ -2,7 +2,6 @@
 
 const planeInterval = 5000;
 const calculInterval = 2000;
-// const observationTime = 120;
 var avions = 0;
 var avionsTotal = 0;
 var calculs = 0;
@@ -10,8 +9,6 @@ var calculsTotal = 0;
 var observationLaunched = false;
 var alarmeOn = false;
 var sizes = [20,18,16,14,12,10,8,6];
-// var t0;
-// var time;
 var alarmeT0;
 var alarmeTimes = [];
 var mental;
@@ -51,21 +48,16 @@ function LaunchGames(){
 function LaunchObservation(){
     clearInterval(launchPlaneInterval);
     clearInterval(checkNewPlaneInterval);
-    // t0 = Date.now();
     calculs = 0;
     calculsTotal = 0;
     avions = 0;
     avionsTotal = 0;
-    // $("#timer").html(' - 120s');
-    // $("#timer").show();
     $("#nbAvions").html('Avions : ~%');
     $("#nbAvions").show();
     $("#nbCalculs").html(' - Calculs : ~%');
     $("#nbCalculs").show();
     timeInterval = setInterval(function(){
-        // time = observationTime - (Date.now()-t0)/1000;
-        // $("#timer").html(' - Timer : '+Math.floor(time)+'s');
-        if(alarmeTimes.length==8){
+        if(observationLaunched && alarmeTimes.length==8){
             EndObservation();
         }
     },1000);
@@ -75,12 +67,13 @@ function LaunchObservation(){
 }
 
 function EndObservation(){
+    observationLaunched = false;
     $.ajax({
         url : 'save_results.php',
         type : 'POST',
         data : 'prenom=' + prenom + '&nom=' + nom + '&avions=' + avions + '&avionsTotal=' + avionsTotal + '&calculs=' + calculs + '&calculsTotal=' + calculsTotal + '&time1=' + alarmeTimes[0] + '&time2=' + alarmeTimes[1] + '&time3=' + alarmeTimes[2] + '&time4=' + alarmeTimes[3] + '&time5=' + alarmeTimes[4] + '&time6=' + alarmeTimes[5] + '&time7=' + alarmeTimes[6] + '&time8=' + alarmeTimes[7],
         success : function(){
-            window.location = './index.php';
+            window.location = './results.php';
         }
     });
 }
